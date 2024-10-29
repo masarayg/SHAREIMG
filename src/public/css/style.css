@@ -1,0 +1,7 @@
+.navbar-brand img{
+    width: 30%;
+}
+
+.card-body img {
+    border: 2px solid red; /* Para depuración */
+}

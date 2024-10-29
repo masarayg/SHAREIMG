@@ -1,0 +1,53 @@
+<div class="card">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      
+      <h2>{{image.title}}</h2>
+      
+      
+
+<button class="btn btn-danger" onclick="deleteImage('{{image.filename}}')" ><i class="fa fa-times"></i>Eliminar</button>
+
+<script>
+  function deleteImage(imageId) {
+    if (confirm("¿Estás seguro de que deseas eliminar esta imagen?")) {
+      fetch(`/images/${imageId}`, {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (response.ok) {
+          // Si el servidor redirige, cambiar la ubicación
+          window.location.href = '/';
+        } else {
+          alert("Error al eliminar la imagen");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+    }
+  }
+</script>
+
+         
+ </div>
+         <div class="card-body">
+
+          <p>{{image.description}}</p>
+          <div class="text-center">
+            <img src="/public/upload/{{image.filename}}" alt="" class="img-fluid">
+          </div>
+          
+         </div>
+
+         <div class="card-footer d-flex justify-content-between align-items-center">
+          
+            <p>
+              <i class="far fa-clock"></i>
+              {{ timeago image.Timestamp}}
+            </p>
+         </div>
+   
+
+
+</div>
